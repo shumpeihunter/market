@@ -1,0 +1,23 @@
+/* エクスポート対象の見た目を整える */
+.slide-wrapper {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* エクスポート時に非表示にしたい要素に適用 */
+.export-hidden { display: none !important; }
+
+.chart-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.button-ghost { background: transparent; border: 1px solid #ddd; }
+.button-download { background: #0ea5e9; color: #fff; }
+
+.edit-forecast-table { margin: 12px 0 4px; overflow-x: auto; }
+.edit-forecast-table table { width: 100%; border-collapse: collapse; }
+.edit-forecast-table th, .edit-forecast-table td { border-bottom: 1px solid #eee; padding: 8px; text-align: left; }
+.edit-summary { margin-bottom: 12px; }
