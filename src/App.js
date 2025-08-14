@@ -445,7 +445,7 @@ export default function MarketForecastChart() {
               {marketData?.source_url && marketData.source_url.length > 0 && (
                 <p style={sourceTextStyle}>
                   出典:{' '}
-                  {marketData.source_url.map((url, index) => (
+                  {marketData.source_url.slice(0, MAX_SOURCE_URLS).map((url, index) => (
                     <span key={index}>{index > 0 && ', '}{url}</span>
                   ))}
                 </p>
