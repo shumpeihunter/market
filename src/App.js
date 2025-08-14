@@ -17,7 +17,7 @@ export default function MarketForecastChart() {
     service: '靴',
     market: '婦人靴'
   };
-  const EXAMPLE_DELAY_MS = 20000; // 約20秒待機
+  const EXAMPLE_DELAY_MS = 10000; // 約20秒待機
 
   // フォーム入力の状態
   const [formData, setFormData] = useState({
@@ -253,7 +253,7 @@ export default function MarketForecastChart() {
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">
-            {useExample ? 'データを生成中...' : 'データを読み込んでいます...'}
+            {useExample ? 'データを読み込んでいます...' : 'データを読み込んでいます...'}
           </p>
         </div>
       </div>
