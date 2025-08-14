@@ -222,6 +222,7 @@ export default function MarketForecastChart() {
   // 共通: グラフとタイトルバーの横幅
   const CONTENT_WIDTH = '85%';
   const CONTENT_MAX_WIDTH = '980px';
+  const CONTENT_TOP_OFFSET = 24; // px: 市場サマリー・黒帯・グラフを少し下げる
 
   // ★ 追加: グラフ上部の黒帯タイトルバー
   const miniTitleBarStyle = {
@@ -411,6 +412,7 @@ export default function MarketForecastChart() {
           ) : (
             // チャート表示
             <>
+              <div style={{ marginTop: CONTENT_TOP_OFFSET, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               {marketData?.market_predict_summary && <p style={summaryTextStyle}>{marketData.market_predict_summary}</p>}
 
               {/* ★ 追加: 黒帯タイトルバー（例: 「婦人靴の市場規模」） */}
@@ -437,6 +439,7 @@ export default function MarketForecastChart() {
                     <Bar dataKey="forecast" fill="rgba(229, 9, 20, 0.4)" name="市場規模（予測）" />
                   </BarChart>
                 </ResponsiveContainer>
+              </div>
               </div>
 
               {marketData?.source_url && marketData.source_url.length > 0 && (
@@ -465,7 +468,7 @@ export default function MarketForecastChart() {
           </div>
               <button
                 onClick={handleReset}
-                className="mt-4 px-6 py-2 bg-gray-500 text:white font-medium rounded-md hover:bg-gray-600 transition-colors"
+                className="mt-4 px-6 py-2 bg-gray-500 text-white font-medium rounded-md hover:bg-gray-600 transition-colors"
               >
                 リセット
               </button>
