@@ -9,6 +9,7 @@ export default function MarketForecastChart() {
   const [testMode, setTestMode] = useState(false);
   const [jsonInput, setJsonInput] = useState('');
   const [useExample, setUseExample] = useState(false); // 例モード判定
+  const [displayMarket, setDisplayMarket] = useState(''); // タイトルバー表示用の市場名
 
   // 例データ入力のための定数
   const EXAMPLE_FORM = {
@@ -59,6 +60,8 @@ export default function MarketForecastChart() {
       }
       const parsedData = JSON.parse(jsonInput);
       setMarketData(parsedData);
+      // 現在のフォームに入力されている市場名をタイトルバーに反映
+      setDisplayMarket(formData.market || '');
       setShowChart(true);
       setError(null);
     } catch (err) {
@@ -83,6 +86,9 @@ export default function MarketForecastChart() {
     setLoading(true);
     setError(null);
     setShowChart(false);
+
+    // 提出時点の市場名をタイトルバー用に固定
+    setDisplayMarket(formData.market);
 
     // 例モードのときはAPIを呼ばず、20秒待ってからサンプルJSONでスライド生成
     if (useExample) {
@@ -132,6 +138,7 @@ export default function MarketForecastChart() {
     setError(null);
     setJsonInput('');
     setUseExample(false);
+    setDisplayMarket('');
   };
 
   // サンプルJSONを挿入（テストモード）
@@ -210,6 +217,21 @@ export default function MarketForecastChart() {
     lineHeight: '1.7',
     maxWidth: '800px',
     marginBottom: '20px'
+  };
+
+  // ★ 追加: グラフ上部の黒帯タイトルバー
+  const miniTitleBarStyle = {
+    width: '85%',
+    maxWidth: '980px',
+    backgroundColor: '#111111',
+    color: '#ffffff',
+    textAlign: 'center',
+    padding: '10px 16px',
+    borderRadius: '8px',
+    fontSize: '0.95rem',
+    fontWeight: 700,
+    letterSpacing: '0.03em',
+    marginBottom: '12px'
   };
 
   const sourceTextStyle = {
@@ -391,6 +413,11 @@ export default function MarketForecastChart() {
             // チャート表示
             <>
               {marketData?.market_predict_summary && <p style={summaryTextStyle}>{marketData.market_predict_summary}</p>}
+
+              {/* ★ 追加: 黒帯タイトルバー（例: 「婦人靴の市場規模」） */}
+              <div style={miniTitleBarStyle}>
+                {(displayMarket || formData.market) ? `${displayMarket || formData.market}の市場規模` : '市場規模'}
+              </div>
 
               <div style={{ position: 'relative', width: '100%', height: '100%', maxHeight: '350px' }}>
                 <ResponsiveContainer width="100%" height="100%">
