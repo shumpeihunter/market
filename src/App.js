@@ -218,11 +218,14 @@ export default function MarketForecastChart() {
     maxWidth: '800px',
     marginBottom: '20px'
   };
+  // 共通: グラフとタイトルバーの横幅
+  const CONTENT_WIDTH = '85%';
+  const CONTENT_MAX_WIDTH = '980px';
 
   // ★ 追加: グラフ上部の黒帯タイトルバー
   const miniTitleBarStyle = {
-    width: '85%',
-    maxWidth: '980px',
+    width: CONTENT_WIDTH,
+    maxWidth: CONTENT_MAX_WIDTH,
     backgroundColor: '#111111',
     color: '#ffffff',
     textAlign: 'center',
@@ -419,7 +422,7 @@ export default function MarketForecastChart() {
                 {(displayMarket || formData.market) ? `${displayMarket || formData.market}の市場規模` : '市場規模'}
               </div>
 
-              <div style={{ position: 'relative', width: '100%', height: '100%', maxHeight: '350px' }}>
+              <div style={{ position: 'relative', width: CONTENT_WIDTH, maxWidth: CONTENT_MAX_WIDTH, margin: '0 auto', height: 350 }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={prepareChartData()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" />
