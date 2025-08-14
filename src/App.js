@@ -176,27 +176,28 @@ export default function MarketForecastChart() {
     return null;
   };
 
+  // ✅ 修正: 文字列として正しくクォートされた背景画像パス
+  // public/slide_bg_market.png を配置して利用してください。
+  const SLIDE_BG_URL = "/slide_bg_market.png";
+
   const slideContainerStyle = {
     width: '100%',
     maxWidth: '1280px',
     margin: '20px auto',
     aspectRatio: '16 / 9',
-    backgroundColor: '#FFFFFF',
+    backgroundImage: `url(${SLIDE_BG_URL})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
     display: 'flex',
     flexDirection: 'column',
-    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-    border: '1px solid #d0d0d0',
+    boxShadow: 'none',
+    border: 'none',
     overflow: 'hidden',
     fontFamily: "'Yu Gothic UI', 'YuGothic', 'Meiryo', 'Noto Sans JP', 'Inter', sans-serif"
   };
 
-  const slideHeaderStyle = {
-    padding: '20px 40px',
-    borderBottom: '3px solid #E50914',
-    textAlign: 'center',
-    flexShrink: 0,
-    backgroundColor: '#f8f9fa'
-  };
+  // 旧ヘッダースタイル（背景画像に置き換えたため未使用）
 
   const slideContentStyle = {
     flexGrow: 1,
@@ -261,12 +262,7 @@ export default function MarketForecastChart() {
   return (
     <div className="min-h-screen py-8" style={{ backgroundColor: '#f0f2f5' }}>
       <div style={slideContainerStyle}>
-        <div style={slideHeaderStyle}>
-          <h1 style={{ fontSize: '2.2rem', fontWeight: '700', color: '#000000', margin: 0 }}>
-            {showChart ? '市場規模の推移と将来予測' : '市場予測分析システム'}
-          </h1>
-        </div>
-
+        
         <div style={slideContentStyle}>
           {!showChart ? (
             // 入力フォーム
@@ -469,7 +465,7 @@ export default function MarketForecastChart() {
           </div>
               <button
                 onClick={handleReset}
-                className="mt-4 px-6 py-2 bg-gray-500 text-white font-medium rounded-md hover:bg-gray-600 transition-colors"
+                className="mt-4 px-6 py-2 bg-gray-500 text:white font-medium rounded-md hover:bg-gray-600 transition-colors"
               >
                 リセット
               </button>
